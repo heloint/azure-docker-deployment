@@ -1,5 +1,7 @@
-MICROSOFT AZURE
-===============
+COMMAND THAT MIGHT BE USED
+==========================
+
+# MICROSOFT AZURE
 
 ## 1. CREATE RESOURCE GROUP
 
