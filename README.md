@@ -1,6 +1,46 @@
 COMMAND THAT MIGHT BE USED
 ==========================
 
+# DOCKER
+
+
+## 1.1 BUILD FROM Dockerfile
+
+* DO NOT FORGET THE CONTEXT DIRECTORY!!! THE DOT "." !!! *
+
+```bash
+docker build -t <name_for_the_new_image> .
+```
+
+## 1.2 RUN AN IMAGE DETACHED
+
+```bash
+docker container run --name <name_for_container> -dit <image_name> bash
+```
+
+## 1.3 RUN AN IMAGE DETACHED ALTERNATIVELY A DIRECTORY MOUNTED INSIDE
+
+```bash
+docker container run \
+    --name <name_for_container> 
+    --mount src=</source/dir/absolute/path>,target=</target/dir/absolute/path>,type=bind
+    -dit <image_name> bash
+```
+
+## 2. COPY FILES TO CONTAINER
+
+```bash
+docker cp </source/dir/absolute/path> <container_name>:</target/dir/absolute/path>
+```
+
+## 3. COMMIT A CONTAINER AS AN IMAGE (MOUNTED DIRECTORY WON'T BE AVAILABLE!)
+
+```bash
+docker commit <container_name> <name_for_the_new_image>:</target/dir/absolute/path>
+```
+
+---
+
 # MICROSOFT AZURE
 
 ## 1. CREATE RESOURCE GROUP
@@ -39,9 +79,6 @@ az webapp config container set --docker-custom-image-name registry.gitlab.com/xt
 
 ### 1. ASSIGN DEPLOYMENT PARAMETERS TO ENVIRONMENT VARIABLES FABRICATED FROM A TSV OUTPUT
 ==============================
-```bash
-az webapp config container set --docker-custom-image-name registry.gitlab.com/xtec/flask --name <name_of_app> --resource-group <r_group_name from 1.>
-```
 
 ```bash
 export APPNAME=$(az webapp list --query [0].name --output tsv)
